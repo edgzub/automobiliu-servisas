@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Head, useForm } from '@inertiajs/react';
 import Layout from '../Layout';
 
-export default function Create({ clients, services }) {
+export default function Create({ clients = [], services = [] }) { // Pridedame default values
     const [selectedClientVehicles, setSelectedClientVehicles] = useState([]);
     const [selectedService, setSelectedService] = useState(null);
 
@@ -17,23 +17,23 @@ export default function Create({ clients, services }) {
         kaina: '',
     });
 
-    // Kai pasikeičia klientas, atnaujiname jo automobilių sąrašą
     useEffect(() => {
-        if (data.client_id) {
+        if (data.client_id && clients) {
             const client = clients.find(c => c.id.toString() === data.client_id.toString());
-            setSelectedClientVehicles(client ? client.vehicles : []);
+            setSelectedClientVehicles(client?.vehicles || []);
             setData('vehicle_id', '');
         }
-    }, [data.client_id]);
+    }, [data.client_id, clients]);
 
-    // Kai pasikeičia paslauga, atnaujiname kainą
     useEffect(() => {
-        if (data.service_id) {
+        if (data.service_id && services) {
             const service = services.find(s => s.id.toString() === data.service_id.toString());
             setSelectedService(service);
-            setData('kaina', service ? service.kaina : '');
+            if (service) {
+                setData('kaina', service.kaina.toString());
+            }
         }
-    }, [data.service_id]);
+    }, [data.service_id, services]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -63,7 +63,7 @@ export default function Create({ clients, services }) {
                                     onChange={e => setData('client_id', e.target.value)}
                                 >
                                     <option value="">Pasirinkite klientą</option>
-                                    {clients.map(client => (
+                                    {clients?.map(client => (
                                         <option key={client.id} value={client.id}>
                                             {client.vardas} {client.pavarde} - {client.tel_numeris}
                                         </option>
@@ -71,6 +71,7 @@ export default function Create({ clients, services }) {
                                 </select>
                                 {errors.client_id && <p className="text-red-500 text-xs italic">{errors.client_id}</p>}
                             </div>
+
 
                             {/* Automobilio pasirinkimas */}
                             <div className="mb-4">
@@ -110,9 +111,9 @@ export default function Create({ clients, services }) {
                                     onChange={e => setData('service_id', e.target.value)}
                                 >
                                     <option value="">Pasirinkite paslaugą</option>
-                                    {services.map(service => (
+                                    {services?.map(service => (
                                         <option key={service.id} value={service.id}>
-                                            {service.pavadinimas} - {service.kaina.toFixed(2)} €
+                                            {service.pavadinimas} - {(parseFloat(service.kaina) || 0).toFixed(2)} €
                                         </option>
                                     ))}
                                 </select>

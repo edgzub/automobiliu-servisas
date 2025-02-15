@@ -17,6 +17,12 @@ class Service extends Model
         'kategorija'
     ];
 
+    // Pridedame duomenų konvertavimą
+    protected $casts = [
+        'kaina' => 'float',
+        'trukme_valandomis' => 'float',
+    ];
+
     public function orders()
     {
         return $this->hasMany(Order::class);

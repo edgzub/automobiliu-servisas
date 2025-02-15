@@ -1,7 +1,14 @@
-import React from 'react';
-import { Link } from '@inertiajs/react';
+import React, { useState } from 'react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function Layout({ children }) {
+    const { auth } = usePage().props;
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="bg-white shadow-lg">
@@ -9,7 +16,9 @@ export default function Layout({ children }) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
-                                <h1 className="text-xl font-bold">Auto Servisas</h1>
+                                <Link href="/" className="text-xl font-bold">
+                                    Auto Servisas
+                                </Link>
                             </div>
                             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                                 <Link
@@ -38,12 +47,72 @@ export default function Layout({ children }) {
                                 </Link>
                             </div>
                         </div>
+
+                        <div className="flex items-center">
+                            {auth?.user ? (
+                                <div className="relative">
+                                    <button
+                                        onClick={toggleDropdown}
+                                        type="button"
+                                        className="flex items-center max-w-xs rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        <svg 
+                                            className="h-8 w-8 text-gray-400"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path 
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                            />
+                                        </svg>
+                                        <span className="ml-2 text-gray-700">{auth.user.name}</span>
+                                    </button>
+
+                                    {showDropdown && (
+                                        <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+                                            <Link
+                                                href="/profile"
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            >
+                                                Mano Profilis
+                                            </Link>
+                                            <Link
+                                                href="/logout"
+                                                method="post"
+                                                as="button"
+                                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            >
+                                                Atsijungti
+                                            </Link>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex space-x-4">
+                                    <Link
+                                        href="/login"
+                                        className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                    >
+                                        Prisijungti
+                                    </Link>
+                                    <Link
+                                        href="/register"
+                                        className="bg-indigo-600 text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium"
+                                    >
+                                        Registruotis
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </nav>
-            <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                {children}
-            </main>
+
+            <main>{children}</main>
         </div>
     );
 }

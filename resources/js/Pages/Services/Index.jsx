@@ -131,8 +131,8 @@ export default function Index({ services }) {
                                        </span>
                                    </td>
                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                       {service.kaina.toFixed(2)} €
-                                   </td>
+    {(typeof service.kaina === 'number' ? service.kaina.toFixed(2) : parseFloat(service.kaina).toFixed(2))} €
+</td>
                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                        {service.trukme_valandomis} val.
                                    </td>

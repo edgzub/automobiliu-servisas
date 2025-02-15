@@ -3,38 +3,36 @@ import React, { useState, useEffect } from 'react';
 import { Head, useForm } from '@inertiajs/react';
 import Layout from '../Layout';
 
-export default function Edit({ order, clients, services }) {
+export default function Edit({ order = {}, clients = [], services = [] }) {
     const [selectedClientVehicles, setSelectedClientVehicles] = useState([]);
     const [selectedService, setSelectedService] = useState(null);
 
     const { data, setData, put, processing, errors } = useForm({
-        client_id: order.vehicle.client_id || '',
-        vehicle_id: order.vehicle_id || '',
-        service_id: order.service_id || '',
-        data: order.data.split('T')[0] || new Date().toISOString().split('T')[0],
-        statusas: order.statusas || 'laukiama',
-        komentarai: order.komentarai || '',
-        kaina: order.kaina || '',
+        client_id: order?.vehicle?.client_id || '',
+        vehicle_id: order?.vehicle_id || '',
+        service_id: order?.service_id || '',
+        data: order?.data?.split('T')[0] || new Date().toISOString().split('T')[0],
+        statusas: order?.statusas || 'laukiama',
+        komentarai: order?.komentarai || '',
+        kaina: order?.kaina || '',
     });
-
     // Kai pasikeičia klientas, atnaujiname jo automobilių sąrašą
     useEffect(() => {
-        if (data.client_id) {
+        if (data.client_id && clients?.length) {
             const client = clients.find(c => c.id.toString() === data.client_id.toString());
-            setSelectedClientVehicles(client ? client.vehicles : []);
+            setSelectedClientVehicles(client?.vehicles || []);
         }
-    }, [data.client_id]);
+    }, [data.client_id, clients]);
 
-    // Kai pasikeičia paslauga, atnaujiname kainą
     useEffect(() => {
-        if (data.service_id) {
+        if (data.service_id && services?.length) {
             const service = services.find(s => s.id.toString() === data.service_id.toString());
             setSelectedService(service);
-            if (!order.kaina) { // Tik jei kaina nebuvo nustatyta anksčiau
-                setData('kaina', service ? service.kaina : '');
+            if (!order?.kaina) {
+                setData('kaina', service?.kaina?.toString() || '');
             }
         }
-    }, [data.service_id]);
+    }, [data.service_id, services]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -111,11 +109,11 @@ export default function Edit({ order, clients, services }) {
                                     onChange={e => setData('service_id', e.target.value)}
                                 >
                                     <option value="">Pasirinkite paslaugą</option>
-                                    {services.map(service => (
-                                        <option key={service.id} value={service.id}>
-                                            {service.pavadinimas} - {service.kaina.toFixed(2)} €
-                                        </option>
-                                    ))}
+                                    {services?.map(service => (
+    <option key={service.id} value={service.id}>
+        {service.pavadinimas} - {parseFloat(service.kaina).toFixed(2)} €
+    </option>
+))}
                                 </select>
                                 {errors.service_id && <p className="text-red-500 text-xs italic">{errors.service_id}</p>}
                             </div>
