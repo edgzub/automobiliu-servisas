@@ -46,9 +46,8 @@ export default function Edit({ service }) {
                                 <input
                                     type="text"
                                     id="pavadinimas"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.pavadinimas ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.pavadinimas ? 'border-red-500' : ''
+                                        }`}
                                     value={data.pavadinimas}
                                     onChange={e => setData('pavadinimas', e.target.value)}
                                 />
@@ -61,9 +60,8 @@ export default function Edit({ service }) {
                                 </label>
                                 <textarea
                                     id="aprasymas"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.aprasymas ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.aprasymas ? 'border-red-500' : ''
+                                        }`}
                                     value={data.aprasymas}
                                     onChange={e => setData('aprasymas', e.target.value)}
                                     rows="3"
@@ -77,9 +75,8 @@ export default function Edit({ service }) {
                                 </label>
                                 <select
                                     id="kategorija"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.kategorija ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.kategorija ? 'border-red-500' : ''
+                                        }`}
                                     value={data.kategorija}
                                     onChange={e => setData('kategorija', e.target.value)}
                                 >
@@ -102,9 +99,8 @@ export default function Edit({ service }) {
                                     step="0.01"
                                     min="0"
                                     id="kaina"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.kaina ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.kaina ? 'border-red-500' : ''
+                                        }`}
                                     value={data.kaina}
                                     onChange={e => setData('kaina', e.target.value)}
                                 />
@@ -120,9 +116,8 @@ export default function Edit({ service }) {
                                     step="0.5"
                                     min="0.5"
                                     id="trukme_valandomis"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.trukme_valandomis ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.trukme_valandomis ? 'border-red-500' : ''
+                                        }`}
                                     value={data.trukme_valandomis}
                                     onChange={e => setData('trukme_valandomis', e.target.value)}
                                 />

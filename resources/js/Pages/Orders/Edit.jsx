@@ -55,9 +55,8 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                 </label>
                                 <select
                                     id="client_id"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.client_id ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.client_id ? 'border-red-500' : ''
+                                        }`}
                                     value={data.client_id}
                                     onChange={e => setData('client_id', e.target.value)}
                                 >
@@ -78,9 +77,8 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                 </label>
                                 <select
                                     id="vehicle_id"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.vehicle_id ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.vehicle_id ? 'border-red-500' : ''
+                                        }`}
                                     value={data.vehicle_id}
                                     onChange={e => setData('vehicle_id', e.target.value)}
                                     disabled={!data.client_id}
@@ -102,18 +100,17 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                 </label>
                                 <select
                                     id="service_id"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.service_id ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.service_id ? 'border-red-500' : ''
+                                        }`}
                                     value={data.service_id}
                                     onChange={e => setData('service_id', e.target.value)}
                                 >
                                     <option value="">Pasirinkite paslaugą</option>
                                     {services?.map(service => (
-    <option key={service.id} value={service.id}>
-        {service.pavadinimas} - {parseFloat(service.kaina).toFixed(2)} €
-    </option>
-))}
+                                        <option key={service.id} value={service.id}>
+                                            {service.pavadinimas} - {parseFloat(service.kaina).toFixed(2)} €
+                                        </option>
+                                    ))}
                                 </select>
                                 {errors.service_id && <p className="text-red-500 text-xs italic">{errors.service_id}</p>}
                             </div>
@@ -126,9 +123,8 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                 <input
                                     type="date"
                                     id="data"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.data ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.data ? 'border-red-500' : ''
+                                        }`}
                                     value={data.data}
                                     onChange={e => setData('data', e.target.value)}
                                 />
@@ -142,9 +138,8 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                 </label>
                                 <select
                                     id="statusas"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.statusas ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.statusas ? 'border-red-500' : ''
+                                        }`}
                                     value={data.statusas}
                                     onChange={e => setData('statusas', e.target.value)}
                                 >
@@ -163,9 +158,8 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                 </label>
                                 <textarea
                                     id="komentarai"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.komentarai ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.komentarai ? 'border-red-500' : ''
+                                        }`}
                                     value={data.komentarai}
                                     onChange={e => setData('komentarai', e.target.value)}
                                     rows="3"
@@ -182,9 +176,8 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                     type="number"
                                     step="0.01"
                                     id="kaina"
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                        errors.kaina ? 'border-red-500' : ''
-                                    }`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.kaina ? 'border-red-500' : ''
+                                        }`}
                                     value={data.kaina}
                                     onChange={e => setData('kaina', e.target.value)}
                                 />

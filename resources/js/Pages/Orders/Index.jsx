@@ -13,7 +13,7 @@ export default function Index({ orders }) {
 
     // Filtravimo ir rūšiavimo logika
     const filteredOrders = orders
-        .filter(order => 
+        .filter(order =>
             (statusFilter === '' || order.statusas === statusFilter) &&
             (
                 order.vehicle.valstybinis_numeris.toLowerCase().includes(search.toLowerCase()) ||
@@ -158,8 +158,8 @@ export default function Index({ orders }) {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-    {parseFloat(order.kaina).toFixed(2)} €
-</td>
+                                        {parseFloat(order.kaina).toFixed(2)} €
+                                    </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <Link
                                             href={route('orders.edit', order.id)}

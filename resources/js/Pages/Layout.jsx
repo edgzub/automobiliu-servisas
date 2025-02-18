@@ -80,14 +80,12 @@ export default function Layout({ children }) {
                                             >
                                                 Mano Profilis
                                             </Link>
-                                            <Link
-                                                href="/logout"
-                                                method="post"
-                                                as="button"
+                                            <button
+                                                onClick={() => Inertia.post('/logout')}
                                                 className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                             >
                                                 Atsijungti
-                                            </Link>
+                                            </button>
                                         </div>
                                     )}
                                 </div>
