@@ -2,18 +2,21 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClientFactory extends Factory
 {
-    public function definition(): array
+    protected $model = Client::class;
+
+    public function definition()
     {
         return [
-            'vardas' => fake('lt_LT')->firstName(),
-            'pavarde' => fake('lt_LT')->lastName(),
-            'tel_numeris' => fake('lt_LT')->phoneNumber(),
-            'el_pastas' => fake()->unique()->safeEmail(),
-            'registracijos_data' => fake()->dateTimeBetween('-1 year', 'now'),
+            'vardas' => $this->faker->firstName(),
+            'pavarde' => $this->faker->lastName(),
+            'tel_numeris' => $this->faker->phoneNumber(),
+            'el_pastas' => $this->faker->unique()->safeEmail(),
+            // Nėra 'adresas' lauko, nors migracija egzistuoja
         ];
     }
 }

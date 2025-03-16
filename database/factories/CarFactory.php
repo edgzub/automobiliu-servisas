@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Vehicle;
+use App\Models\Car;
 use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class VehicleFactory extends Factory
+class CarFactory extends Factory
 {
-    protected $model = Vehicle::class;
+    protected $model = Car::class;
 
     public function definition()
     {
@@ -21,4 +21,4 @@ class VehicleFactory extends Factory
             'vin_kodas' => strtoupper($this->faker->regexify('[A-HJ-NPR-Z0-9]{17}')),
         ];
     }
-}
+} 

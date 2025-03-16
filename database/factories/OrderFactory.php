@@ -2,22 +2,27 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
 use App\Models\Vehicle;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory
 {
-    public function definition(): array
+    protected $model = Order::class;
+
+    public function definition()
     {
-        $service = Service::factory()->create();
+        $service = Service::inRandomOrder()->first() ?: Service::factory()->create();
+        
         return [
             'vehicle_id' => Vehicle::factory(),
             'service_id' => $service->id,
-            'data' => fake()->dateTimeBetween('-6 months', '+1 month'),
-            'statusas' => fake()->randomElement(['laukiama', 'vykdoma', 'atlikta', 'atsaukta']),
-            'komentarai' => fake()->optional(0.7)->text(200),
-            'kaina' => $service->kaina,
+            'statusas' => $this->faker->randomElement(['1', '2', '3', '0']),
+            'kaina' => $this->faker->randomFloat(2, 100, 2000),
+            'komentarai' => $this->faker->paragraph(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

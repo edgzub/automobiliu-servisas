@@ -2,29 +2,36 @@
 
 namespace Database\Factories;
 
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ServiceFactory extends Factory
 {
-    public function definition(): array
+    protected $model = Service::class;
+
+    public function definition()
     {
-        $services = [
-            'Tepalų keitimas' => ['Pilnas tepalų ir filtrų keitimas', 50.00, 1.00, 'Techninė priežiūra'],
-            'Ratų balansavimas' => ['Ratų balansavimas ir montavimas', 40.00, 1.00, 'Ratai'],
-            'Stabdžių patikra' => ['Stabdžių sistemos patikra ir remontas', 80.00, 2.00, 'Stabdžiai'],
-            'Variklio diagnostika' => ['Kompiuterinė variklio diagnostika', 60.00, 1.50, 'Diagnostika'],
-            'Kondicionieriaus pildymas' => ['Kondicionieriaus sistemos pildymas', 70.00, 1.00, 'Klimato kontrolė'],
-        ];
-
-        $serviceName = $this->faker->randomElement(array_keys($services));
-        $serviceData = $services[$serviceName];
-
         return [
-            'pavadinimas' => $serviceName,
-            'aprasymas' => $serviceData[0],
-            'kaina' => $serviceData[1],
-            'trukme_valandomis' => $serviceData[2],
-            'kategorija' => $serviceData[3],
+            'pavadinimas' => $this->faker->randomElement([
+                'Tepalų keitimas',
+                'Ratų balansavimas',
+                'Stabdžių patikra',
+                'Variklio diagnostika',
+                'Važiuoklės remontas',
+                'Kondicionieriaus pildymas',
+                'Elektros sistemos remontas',
+                'Kompiuterinė diagnostika'
+            ]),
+            'aprasymas' => $this->faker->paragraph(),
+            'kaina' => $this->faker->randomFloat(2, 50, 500),
+            'trukme_valandomis' => $this->faker->numberBetween(1, 8),
+            'kategorija' => $this->faker->randomElement([
+                'Variklis',
+                'Važiuoklė',
+                'Elektros sistema',
+                'Kėbulas',
+                'Tepalai ir skysčiai'
+            ]),
         ];
     }
 }
