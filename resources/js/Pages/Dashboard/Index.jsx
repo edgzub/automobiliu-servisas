@@ -11,10 +11,10 @@ export default function Index() {
     }, []);
     
     const cards = [
-        { title: "Klientai", desc: "Valdykite klientų informaciją", color: "bg-gradient-to-r from-blue-400 to-blue-600", link: "/dashboard/clients" },
-        { title: "Automobiliai", desc: "Tvarkykite automobilių duomenis", color: "bg-gradient-to-r from-green-400 to-green-600", link: "/dashboard/vehicles" },
-        { title: "Paslaugos", desc: "Administruokite teikiamas paslaugas", color: "bg-gradient-to-r from-yellow-400 to-yellow-600", link: "/dashboard/services" },
-        { title: "Užsakymai", desc: "Sekite užsakymų eigą", color: "bg-gradient-to-r from-purple-400 to-purple-600", link: "/dashboard/orders" }
+        { title: "Klientai", desc: "Valdykite klientų informaciją", color: "bg-gradient-to-r from-blue-400 to-blue-600", link: "/clients" },
+        { title: "Automobiliai", desc: "Tvarkykite automobilių duomenis", color: "bg-gradient-to-r from-green-400 to-green-600", link: "/vehicles" },
+        { title: "Paslaugos", desc: "Administruokite teikiamas paslaugas", color: "bg-gradient-to-r from-yellow-400 to-yellow-600", link: "/services" },
+        { title: "Užsakymai", desc: "Sekite užsakymų eigą", color: "bg-gradient-to-r from-purple-400 to-purple-600", link: "/orders" }
     ];
 
     return (

@@ -143,10 +143,10 @@ export default function Edit({ order = {}, clients = [], services = [] }) {
                                     value={data.statusas}
                                     onChange={e => setData('statusas', e.target.value)}
                                 >
-                                    <option value="laukiama">Laukiama</option>
-                                    <option value="vykdoma">Vykdoma</option>
-                                    <option value="atlikta">Atlikta</option>
-                                    <option value="atsaukta">Atšaukta</option>
+                                    <option value="laukiama">Naujas</option>
+                                    <option value="vykdoma">Vykdomas</option>
+                                    <option value="atlikta">Baigtas</option>
+                                    <option value="atsaukta">Atšauktas</option>
                                 </select>
                                 {errors.statusas && <p className="text-red-500 text-xs italic">{errors.statusas}</p>}
                             </div>

@@ -31,4 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('services', ServiceController::class);
     Route::resource('orders', OrderController::class);
     Route::post('/vehicles/import', [VehicleController::class, 'importFromApi'])->name('vehicles.import');
+
+    // Pridėkite šiuos maršrutus
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/clients', [ClientController::class, 'index']);
+        Route::get('/vehicles', [VehicleController::class, 'index']);
+        Route::get('/services', [ServiceController::class, 'index']);
+        Route::get('/orders', [OrderController::class, 'index']);
+    });
 });

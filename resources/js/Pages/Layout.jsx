@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, usePage, router as Inertia } from '@inertiajs/react';
 import { Toast } from '@/Components/Toast';
 
 export default function Layout({ children }) {
@@ -18,8 +18,13 @@ export default function Layout({ children }) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
-                                <Link href="/" className="text-xl font-bold">
-                                    Auto Servisas
+                                <Link href="/" className="text-2xl font-bold tracking-wider">
+                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-800">
+                                        AUTO
+                                    </span>
+                                    <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-gray-900">
+                                        SERVISAS
+                                    </span>
                                 </Link>
                             </div>
                             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
