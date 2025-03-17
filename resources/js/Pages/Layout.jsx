@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
+import { Toast } from '@/Components/Toast';
 
 export default function Layout({ children }) {
     const { auth } = usePage().props;
@@ -11,6 +12,7 @@ export default function Layout({ children }) {
 
     return (
         <div className="min-h-screen bg-gray-100">
+            <Toast />
             <nav className="bg-white shadow-lg">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex justify-between h-16">

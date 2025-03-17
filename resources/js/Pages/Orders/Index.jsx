@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Layout from '../Layout';
+import StatusBadge from '@/Components/StatusBadge';
+import OrderProgress from '@/Components/OrderProgress';
+import { FaSearch, FaPlusCircle } from 'react-icons/fa';
 
 export default function Index({ orders }) {
     const [search, setSearch] = useState('');
@@ -153,9 +156,10 @@ export default function Index({ orders }) {
                                         <div className="text-sm text-gray-500">{order.service.kategorija}</div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(order.statusas)}`}>
-                                            {order.statusas.charAt(0).toUpperCase() + order.statusas.slice(1)}
-                                        </span>
+                                        <StatusBadge status={order.statusas} />
+                                        <div className="mt-2">
+                                            <OrderProgress status={order.statusas} />
+                                        </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {parseFloat(order.kaina).toFixed(2)} €
