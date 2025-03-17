@@ -41,3 +41,5 @@ Route::prefix('v1')->group(function () {
     Route::get('cars/years', [CarDataController::class, 'years']);
     Route::get('cars/decode-vin/{vin}', [CarDataController::class, 'decodeVin']);
 });
+
+Route::post('/import-vehicles', [App\Http\Controllers\Api\CarDataController::class, 'importVehiclesFromApi']);

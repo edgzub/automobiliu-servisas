@@ -76,4 +76,22 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.index')
             ->with('message', 'Automobilis sėkmingai ištrintas');
     }
+
+    public function importFromApi(Request $request)
+    {
+        // Naudojame CarDataController kad importuotume duomenis
+        $controller = new \App\Http\Controllers\Api\CarDataController();
+        $response = $controller->importVehiclesFromApi($request);
+        
+        // Konvertuojame JSON atsakymą į masyvą
+        $data = json_decode($response->getContent(), true);
+        
+        if (!empty($data['errors'])) {
+            return redirect()->route('vehicles.index')
+                ->with('error', implode(', ', $data['errors']));
+        }
+        
+        return redirect()->route('vehicles.index')
+            ->with('message', $data['message'] ?? 'Automobiliai importuoti sėkmingai');
+    }
 }

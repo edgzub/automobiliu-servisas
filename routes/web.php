@@ -30,4 +30,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('vehicles', VehicleController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('orders', OrderController::class);
+    Route::post('/vehicles/import', [VehicleController::class, 'importFromApi'])->name('vehicles.import');
 });
