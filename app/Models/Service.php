@@ -14,13 +14,19 @@ class Service extends Model
         'aprasymas',
         'kaina',
         'trukme_valandomis',
-        'kategorija'
+        'kategorija',
+        'name',
+        'price',
+        'duration',
+        'description'
     ];
 
     // Pridedame duomenų konvertavimą
     protected $casts = [
         'kaina' => 'float',
         'trukme_valandomis' => 'float',
+        'price' => 'float',
+        'duration' => 'integer'
     ];
 
     public function orders()

@@ -12,10 +12,19 @@ class Order extends Model
     protected $fillable = [
         'vehicle_id',
         'service_id',
+        'mechanic_id',
         'data',
         'statusas',
         'komentarai',
-        'kaina'
+        'kaina',
+        'status',
+        'total_price',
+        'description'
+    ];
+
+    protected $casts = [
+        'kaina' => 'float',
+        'total_price' => 'float',
     ];
 
     public function vehicle()
@@ -26,5 +35,10 @@ class Order extends Model
     public function service()
     {
         return $this->belongsTo(Service::class);
+    }
+    
+    public function mechanic()
+    {
+        return $this->belongsTo(Mechanic::class);
     }
 }

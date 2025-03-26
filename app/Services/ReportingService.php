@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\Mechanic;
 use App\Models\Service;
-use App\Models\Car;
+use App\Models\Vehicle;
 use Carbon\Carbon;
 
 class ReportingService
@@ -39,15 +39,11 @@ class ReportingService
      */
     public function getServicePopularity(): Collection
     {
-        return DB::table('orders')
-            ->join('services', 'orders.service_id', '=', 'services.id')
-            ->select(
-                'services.id',
-                'services.name',
-                DB::raw('COUNT(orders.id) as total_orders'),
-                DB::raw('SUM(orders.total_price) as total_revenue'),
-                DB::raw('AVG(orders.total_price) as average_order_price')
-            )
+        return Service::select('services.id', 'services.name')
+            ->selectRaw('COUNT(orders.id) as total_orders')
+            ->selectRaw('SUM(orders.total_price) as total_revenue')
+            ->selectRaw('AVG(orders.total_price) as average_order_price')
+            ->leftJoin('orders', 'services.id', '=', 'orders.service_id')
             ->groupBy('services.id', 'services.name')
             ->orderBy('total_orders', 'desc')
             ->get();

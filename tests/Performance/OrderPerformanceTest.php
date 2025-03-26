@@ -23,7 +23,11 @@ class OrderPerformanceTest extends TestCase
         $this->searchService = new SearchService();
     }
     
-    public function testOrderCreationPerformance()
+    /**
+     * @test
+     * @group performance
+     */
+    public function orderCreationPerformance()
     {
         // Arrange
         $car = Car::factory()->create();
@@ -52,7 +56,11 @@ class OrderPerformanceTest extends TestCase
         $this->assertLessThan(0.5, $executionTime, 'Order creation took too long: ' . $executionTime . ' seconds');
     }
     
-    public function testSearchPerformance()
+    /**
+     * @test
+     * @group performance
+     */
+    public function searchPerformance()
     {
         // Arrange
         Order::factory(50)->create();
@@ -69,7 +77,11 @@ class OrderPerformanceTest extends TestCase
         $this->assertLessThan(1.0, $executionTime, 'Search operation took too long: ' . $executionTime . ' seconds');
     }
     
-    public function testFilterPerformance()
+    /**
+     * @test
+     * @group performance
+     */
+    public function filterPerformance()
     {
         // Arrange
         Order::factory(50)->create();
@@ -87,7 +99,11 @@ class OrderPerformanceTest extends TestCase
         $this->assertLessThan(1.0, $executionTime, 'Filter operation took too long: ' . $executionTime . ' seconds');
     }
     
-    public function testDatabaseQueryPerformance()
+    /**
+     * @test
+     * @group performance
+     */
+    public function databaseQueryPerformance()
     {
         // Arrange
         Order::factory(50)->create();

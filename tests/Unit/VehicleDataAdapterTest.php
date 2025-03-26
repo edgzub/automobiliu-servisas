@@ -9,7 +9,6 @@ use App\Models\Client;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use InvalidArgumentException;
 
-#[TestClass]
 class VehicleDataAdapterTest extends TestCase
 {
     use RefreshDatabase;
@@ -18,7 +17,6 @@ class VehicleDataAdapterTest extends TestCase
     private Vehicle $vehicle;
     private Client $client;
 
-    #[SetUp]
     protected function setUp(): void
     {
         parent::setUp();
@@ -44,8 +42,8 @@ class VehicleDataAdapterTest extends TestCase
         ]);
     }
 
-    #[Test]
-    public function adapts_vehicle_to_external_api_format(): void
+    /** @test */
+    public function adapts_vehicle_to_external_api_format()
     {
         $adapted = $this->adapter->adaptToExternalApi($this->vehicle);
 
@@ -62,8 +60,8 @@ class VehicleDataAdapterTest extends TestCase
         $this->assertEquals('+37061234567', $adapted['owner']['phone']);
     }
 
-    #[Test]
-    public function adapts_external_data_to_vehicle_format(): void
+    /** @test */
+    public function adapts_external_data_to_vehicle_format()
     {
         $externalData = [
             'registration_number' => 'XYZ789',
@@ -83,8 +81,11 @@ class VehicleDataAdapterTest extends TestCase
         $this->assertEquals(2021, $adapted['metai']);
     }
 
-    #[Test]
-    public function throws_exception_for_invalid_external_data(): void
+    /** 
+     * @test 
+     * @group exceptions
+     */
+    public function throws_exception_for_invalid_external_data()
     {
         $invalidData = [
             'registration_number' => 'XYZ789',
@@ -97,8 +98,11 @@ class VehicleDataAdapterTest extends TestCase
         $this->adapter->adaptFromExternalApi($invalidData);
     }
 
-    #[Test]
-    public function throws_exception_for_invalid_year(): void
+    /** 
+     * @test 
+     * @group exceptions
+     */
+    public function throws_exception_for_invalid_year()
     {
         $invalidData = [
             'registration_number' => 'XYZ789',
@@ -112,8 +116,11 @@ class VehicleDataAdapterTest extends TestCase
         $this->adapter->adaptFromExternalApi($invalidData);
     }
 
-    #[Test]
-    public function throws_exception_for_invalid_vin(): void
+    /** 
+     * @test 
+     * @group exceptions
+     */
+    public function throws_exception_for_invalid_vin()
     {
         $invalidData = [
             'registration_number' => 'XYZ789',

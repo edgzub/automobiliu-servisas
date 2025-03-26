@@ -15,7 +15,18 @@ class Vehicle extends Model
         'modelis',
         'metai',
         'valstybinis_numeris',
-        'vin_kodas'
+        'vin_kodas',
+        'brand',
+        'model',
+        'year',
+        'plate_number',
+        'vin',
+        'description'
+    ];
+    
+    protected $casts = [
+        'metai' => 'integer',
+        'year' => 'integer',
     ];
 
     public function client()
